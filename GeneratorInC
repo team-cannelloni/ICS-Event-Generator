@@ -1,3 +1,5 @@
+/*  This is a test to see if generating .ics files in C works */
+
 #include <stdio.h>
 #define LEN 256
 
