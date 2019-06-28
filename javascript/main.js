@@ -16,7 +16,7 @@ function generateFile(filename, text) {
 function download() {
     // Generate download of hello.txt file with some content
     const text = document.getElementById('text-container').innerHTML;
-    const filename = 'test.txt';
+    const filename = 'test.ics';
 
     generateFile(filename, text);
 }
