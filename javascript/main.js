@@ -43,7 +43,7 @@ function download() {
     location: 'UH Manoa'
   };
   // Generate download of hello.txt file with some content
-  const dataArray = [`BEGIN: ${data.begin}`,
+  const dataArray = [`BEGIN:${data.begin}`,
   `VERSION:${data.version}`,
   `PRODID:${data.prodid}`,
   `X-WR-CALNAME:${data.xWrCalname}`,
