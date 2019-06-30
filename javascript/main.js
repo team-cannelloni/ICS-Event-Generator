@@ -29,15 +29,19 @@ function download() {
     tzoffsetto: '-1000',
     tzname: 'HST',
     dtstart: '19700101T000000',
+    rrule: 'FREQ=DAILY;COUNT=10',
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
     beginevent: 'VEVENT',
-    dtstamp: '20190621T035133Z',
-    uid: '20190621T035133Z-2089128844@marudot.com',
+    dtstame: '20190621T035133Z',
+    uid: '20190621T035133Z - 2089128844@marudot.com',
+    priority: '0',
+    class: 'PUBLIC',
     summary: 'Test Event',
+    geo: '21.29693;-157.81711',
     description: 'This is a test of the event creator',
     location: 'UH Manoa'
-  }
+  };
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN: ${data.begin}`,
   `VERSION:${data.version}`,
