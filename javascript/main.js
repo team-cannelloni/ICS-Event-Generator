@@ -1,19 +1,37 @@
+// Listen for the click of the file generation button in index.html, then run download().
+document.getElementById('generate-file-button').addEventListener('click', download);
+
+/** 
+ * Generates the ICS file
+ * @param filename the name of the file to download
+ * @param text the text to write into the file.
+ */
 function generateFile(filename, text) {
   const element = document.createElement('a');
-
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
-
   element.style.display = 'none';
   document.body.appendChild(element);
-
   element.click();
-
   document.body.removeChild(element);
 }
 
-// Start file download.
+/**
+ * Sets the data for the download.  Called by the click event listener tied to the generate button.
+ */
 function download() {
+
+  /* TODO: Validate form and check to make sure that all fields are properly filled out.
+  *  If they are not filled out, notify the user on the html page.
+  */
+
+  /* TODO: Set all form data into the data object after it has been validated */
+  const eventName = document.getElementById('event-name').value;
+  const eventSummary = document.getElementById('event-summary').value;
+  const eventDescription = document.getElementById('event-description').value;
+  const eventStartTime = document.getElementById('event-start-time').value;
+  const eventStartDate = document.getElementById('event-start-date').value;
+
   const data = {
     begin: 'VCALENDAR',
     version: '2.0',
@@ -72,7 +90,6 @@ function download() {
 
   let text = '';
   dataArray.forEach(line => text += `${line}\r\n`);
-  console.log(text);
 
   const filename = 'test.ics';
 
