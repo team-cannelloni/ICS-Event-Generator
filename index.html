@@ -1,15 +1,40 @@
 <!Doctype html>
 <html>
+
 <head>
   <title>ICS file generator</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="javascript/main.js"></script>
 </head>
-<body>
-<h1>Event File Generator Test Javascript</h1>
-<p id="text-container">
 
-</p>
-<button id="download-button" onClick="download()">Generate File</button>
+<body>
+  <div id="nav" class="nav">
+    <h1>Event Creator</h1>
+  </div>
+
+  <!-- The container holds the form for the event creator.  Each row of the table is a label and 
+       an input field -->
+  <div id="ics-form-container" class="ics-form-container">
+    <table>
+      <tr>
+        <td class="event-form-label"><label for="event-name">Event Name: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-name" name="event-name"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-description">Event Description: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-description" name="event-description"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-name">Event Summary: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-summary" name="event-summary"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="start-date">Start Date: </label></td>
+        <td><input class="event-firm-date-input" type="date" id="event-start-date" name="start-date"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="start-time">Start Time</label></td>
+        <td><input class="event-form-time-input" type="time" id="event-start-time" name="start-time"> </td>
+      </tr>
+    </table>
+    <div id="generate-file-button" class="generate-button">Generate File</div>
+  </div>
+  <script src="javascript/main.js"></script>
 </body>
+
 </html>
