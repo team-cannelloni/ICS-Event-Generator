@@ -27,10 +27,18 @@ function download() {
 
   /* TODO: Set all form data into the data object after it has been validated */
   const eventName = document.getElementById('event-name').value;
+  const eventClassification = document.getElementById('event-classification').value;
   const eventSummary = document.getElementById('event-summary').value;
   const eventDescription = document.getElementById('event-description').value;
+  const eventLocation = document.getElementById('event-location').value;
+  const eventLatitude = document.getElementById('event-latitude').value;
+  const eventLongitude = document.getElementById('event-longitude').value;
   const eventStartTime = document.getElementById('event-start-time').value;
+  const eventEndTime = document.getElementById('event-end-time').value;
   const eventStartDate = document.getElementById('event-start-date').value;
+  const eventEndDate = document.getElementById('event-end-date').value;
+  const eventRRule= document.getElementById('event-repeat-rule').value;
+  const eventPriority= document.getElementById('event-priority').value;
 
   const data = {
     begin: 'VCALENDAR',
