@@ -47,6 +47,7 @@ function download() {
     tzoffsetto: '-1000',
     tzname: 'HST',
     dtstart: '19700101T000000',
+    dtend: '19700101T010000',
     rrule: 'FREQ=DAILY;COUNT=10',
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
@@ -60,6 +61,11 @@ function download() {
     description: 'This is a test of the event creator',
     location: 'UH Manoa'
   };
+
+  data.xWrCalname = eventName;
+  data.summary = eventSummary;
+  data.description = eventDescription;
+
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN:${data.begin}`,
   `VERSION:${data.version}`,
