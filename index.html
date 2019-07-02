@@ -25,6 +25,27 @@
         <td><label class="event-form-label" for="event-summary">Event Summary: </label></td>
         <td><input class="event-form-text-input" type="text" id="event-summary" name="event-summary"></td></tr>
       <tr>
+        <td class="event-form-label"><label for="event-priority">Event Priority: </label></td>
+        <td><select id="event-priority">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select></td></tr>
+      <tr>
+        <td class="event-form-label"><label for="event-classification">Event Classification: </label></td>
+        <td><select id="event-classification">
+          <option value="PUBLIC">PUBLIC</option>
+          <option value="PRIVATE">PRIVATE</option>
+          <option value="CONFIDENTIAL">CONFIDENTIAL</option>
+        </select></td></tr>
+      <tr>
         <td class="event-form-label"><label for="event-location">Event Location: </label></td>
         <td><input class="event-form-text-input" type="text" id="event-location" name="event-location"></td></tr>
       <tr>
@@ -48,13 +69,6 @@
       <tr>
         <td><label class="event-form-label" for="event-repeat-rule">Repeat For How Many Days?: </label></td>
         <td><input class="event-form-text-input" type="text" id="event-repeat-rule" name="event-repeat-rule"></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-priority">Event Priority: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-priority" name="event-priority"></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-classification">Event Classification: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-classification" name="event-classification"></td>
-      </tr>
     </table>
     <div id="generate-file-button" class="generate-button">Generate File</div>
   </div>

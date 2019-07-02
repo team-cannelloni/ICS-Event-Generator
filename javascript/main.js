@@ -73,6 +73,10 @@ function download() {
   data.xWrCalname = eventName;
   data.summary = eventSummary;
   data.description = eventDescription;
+  data.location = eventLocation;
+  data.priority = eventPriority;
+  data.class = eventClassification;
+  data.rrule = 'FREQ=DAILY;COUNT=' + eventRRule;
 
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN:${data.begin}`,
@@ -94,6 +98,7 @@ function download() {
   `BEGIN:${data.beginevent}`,
   `DTSTAMP:${data.dtstamp}`,
   `PRIORITY:${data.priority}`,
+  `CLASS:${data.class}`,
   `RRULE:${data.rrule}`,
   `UID:${data.uid}`,
   'DTSTART;TZID=Pacific/Honolulu:20190621T120000',
