@@ -27,10 +27,18 @@ function download() {
 
   /* TODO: Set all form data into the data object after it has been validated */
   const eventName = document.getElementById('event-name').value;
+  const eventClassification = document.getElementById('event-classification').value;
   const eventSummary = document.getElementById('event-summary').value;
   const eventDescription = document.getElementById('event-description').value;
+  const eventLocation = document.getElementById('event-location').value;
+  const eventLatitude = document.getElementById('event-latitude').value;
+  const eventLongitude = document.getElementById('event-longitude').value;
   const eventStartTime = document.getElementById('event-start-time').value;
+  const eventEndTime = document.getElementById('event-end-time').value;
   const eventStartDate = document.getElementById('event-start-date').value;
+  const eventEndDate = document.getElementById('event-end-date').value;
+  const eventRRule= document.getElementById('event-repeat-rule').value;
+  const eventPriority= document.getElementById('event-priority').value;
 
   const data = {
     begin: 'VCALENDAR',
@@ -47,6 +55,7 @@ function download() {
     tzoffsetto: '-1000',
     tzname: 'HST',
     dtstart: '19700101T000000',
+    dtend: '19700101T010000',
     rrule: 'FREQ=DAILY;COUNT=10',
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
@@ -60,6 +69,11 @@ function download() {
     description: 'This is a test of the event creator',
     location: 'UH Manoa'
   };
+
+  data.xWrCalname = eventName;
+  data.summary = eventSummary;
+  data.description = eventDescription;
+
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN:${data.begin}`,
   `VERSION:${data.version}`,

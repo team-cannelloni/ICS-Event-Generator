@@ -22,14 +22,38 @@
         <td><label class="event-form-label" for="event-description">Event Description: </label></td>
         <td><input class="event-form-text-input" type="text" id="event-description" name="event-description"></td></tr>
       <tr>
-        <td><label class="event-form-label" for="event-name">Event Summary: </label></td>
+        <td><label class="event-form-label" for="event-summary">Event Summary: </label></td>
         <td><input class="event-form-text-input" type="text" id="event-summary" name="event-summary"></td></tr>
       <tr>
-        <td><label class="event-form-label" for="start-date">Start Date: </label></td>
-        <td><input class="event-firm-date-input" type="date" id="event-start-date" name="start-date"></td></tr>
+        <td class="event-form-label"><label for="event-location">Event Location: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-location" name="event-location"></td></tr>
       <tr>
-        <td><label class="event-form-label" for="start-time">Start Time</label></td>
-        <td><input class="event-form-time-input" type="time" id="event-start-time" name="start-time"> </td>
+        <td class="event-form-label"><label for="event-latitude">GPS Latitude: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-latitude" name="event-latitude"></td></tr>
+      <tr>
+        <td class="event-form-label"><label for="event-longitude">GPS Longitude: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-longitude" name="event-longitude"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-start-date">Start Date: </label></td>
+        <td><input class="event-firm-date-input" type="date" id="event-start-date" name="event-start-date"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-end-date">End Date: </label></td>
+        <td><input class="event-firm-date-input" type="date" id="event-end-date" name="event-end-date"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-start-time">Start Time</label></td>
+        <td><input class="event-form-time-input" type="time" id="event-start-time" name="event-start-time"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-end-time">End Time</label></td>
+        <td><input class="event-form-time-input" type="time" id="event-end-time" name="event-end-time"></td></tr>
+      <tr>
+        <td><label class="event-form-label" for="event-repeat-rule">Repeat For How Many Days?: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-repeat-rule" name="event-repeat-rule"></td></tr>
+      <tr>
+        <td class="event-form-label"><label for="event-priority">Event Priority: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-priority" name="event-priority"></td></tr>
+      <tr>
+        <td class="event-form-label"><label for="event-classification">Event Classification: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-classification" name="event-classification"></td>
       </tr>
     </table>
     <div id="generate-file-button" class="generate-button">Generate File</div>
