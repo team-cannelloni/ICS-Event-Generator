@@ -49,12 +49,6 @@
         <td class="event-form-label"><label for="event-location">Event Location: </label></td>
         <td><input class="event-form-text-input" type="text" id="event-location" name="event-location"></td></tr>
       <tr>
-        <td class="event-form-label"><label for="event-latitude">GPS Latitude: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-latitude" name="event-latitude"></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-longitude">GPS Longitude: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-longitude" name="event-longitude"></td></tr>
-      <tr>
         <td><label class="event-form-label" for="event-start-date">Start Date: </label></td>
         <td><input class="event-firm-date-input" type="date" id="event-start-date" name="event-start-date"></td></tr>
       <tr>
@@ -69,7 +63,36 @@
       <tr>
         <td><label class="event-form-label" for="event-repeat-rule">Repeat For How Many Days?: </label></td>
         <td><input type="number" id="event-repeat-rule" step="1"></td></tr>
+      <tr>
+        <td class="event-form-label"><label for="event-latitude">GPS Latitude: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-latitude" name="event-latitude"></td></tr>
+      <tr>
+        <td class="event-form-label"><label for="event-longitude">GPS Longitude: </label></td>
+        <td><input class="event-form-text-input" type="text" id="event-longitude" name="event-longitude"></td></tr>
     </table>
+
+    <p>If you want to use your current location, please click below.</p>
+
+    <button onclick="getLocation()">Get My GPS Location!</button>
+
+    <p id="myGPS"></p>
+
+    <script>
+      var myLocation = document.getElementById("myGPS");
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          myLocation.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+
+      function showPosition(position) {
+        myLocation.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+      }
+    </script>
     <div id="generate-file-button" class="generate-button">Generate File</div>
   </div>
   <script src="javascript/main.js"></script>
