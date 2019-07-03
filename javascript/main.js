@@ -109,8 +109,6 @@ function download() {
   `UID:${data.uid}`,
   `DTSTART:${data.dtstart}`,
   `DTEND:${data.dtend}`,
-  //'DTSTART;TZID=Pacific/Honolulu:20190621T120000',
-  //'DTEND;TZID=Pacific/Honolulu:20190621T120000',
   `SUMMARY:${data.summary}`,
   `GEO:${data.geo}`,
   `DESCRIPTION:${data.description}`,
