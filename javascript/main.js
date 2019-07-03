@@ -25,6 +25,10 @@ function download() {
   *  If they are not filled out, notify the user on the html page.
   */
 
+  function dtFormatter(input) {
+    return input.replace(/[-:]/g, "");
+  }
+
   /* TODO: Set all form data into the data object after it has been validated */
   const eventName = document.getElementById('event-name').value;
   const eventClassification = document.getElementById('event-classification').value;
@@ -43,7 +47,7 @@ function download() {
   const data = {
     begin: 'VCALENDAR',
     version: '2.0',
-    prodid: '-//ical.marudot.com//iCal Event Maker',
+    prodid: 'Team Cannelloni',
     xWrCalname: 'Test Event',
     calscale: 'GREGORIAN',
     begintz: 'VTIMEZONE',
@@ -77,6 +81,9 @@ function download() {
   data.priority = eventPriority;
   data.class = eventClassification;
   data.rrule = 'FREQ=DAILY;COUNT=' + eventRRule;
+  data.dtstart = dtFormatter(eventStartDate);
+  data.dtend = dtFormatter(eventEndTime);
+
 
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN:${data.begin}`,
