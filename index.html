@@ -3,6 +3,7 @@
 
 <head>
   <title>ICS file generator</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -14,62 +15,67 @@
   <!-- The container holds the form for the event creator.  Each row of the table is a label and 
        an input field -->
   <div id="ics-form-container" class="ics-form-container">
-    <table>
-      <tr>
-        <td class="event-form-label"><label for="event-name">Event Name: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-name" name="event-name"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-description">Event Description: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-description" name="event-description"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-summary">Event Summary: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-summary" name="event-summary"></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-priority">Event Priority: </label></td>
-        <td><select id="event-priority">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-        </select></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-classification">Event Classification: </label></td>
-        <td><select id="event-classification">
-          <option value="PUBLIC">PUBLIC</option>
-          <option value="PRIVATE">PRIVATE</option>
-          <option value="CONFIDENTIAL">CONFIDENTIAL</option>
-        </select></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-location">Event Location: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-location" name="event-location"></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-latitude">GPS Latitude: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-latitude" name="event-latitude"></td></tr>
-      <tr>
-        <td class="event-form-label"><label for="event-longitude">GPS Longitude: </label></td>
-        <td><input class="event-form-text-input" type="text" id="event-longitude" name="event-longitude"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-start-date">Start Date: </label></td>
-        <td><input class="event-firm-date-input" type="date" id="event-start-date" name="event-start-date"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-end-date">End Date: </label></td>
-        <td><input class="event-firm-date-input" type="date" id="event-end-date" name="event-end-date"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-start-time">Start Time</label></td>
-        <td><input class="event-form-time-input" type="time" id="event-start-time" name="event-start-time"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-end-time">End Time</label></td>
-        <td><input class="event-form-time-input" type="time" id="event-end-time" name="event-end-time"></td></tr>
-      <tr>
-        <td><label class="event-form-label" for="event-repeat-rule">Repeat For How Many Days?: </label></td>
-        <td><input type="number" id="event-repeat-rule" step="1"></td></tr>
-    </table>
+    <div class="event-form-label"><label for="event-name">Event Name: </label></div>
+    <div class="input-area" id="event-name-area"><input class="event-form-text-input long" type="text" id="event-name"
+        name="event-name"></div>
+    <div id="event-name-warning" class="warning"></div>
+
+    <div class="event-form-label"><label for="event-description">Event Description: </label></div>
+    <div class="input-area" id="event-description-area"><input class="event-form-text-input long" type="text"
+        id="event-description" name="event-description"></div>
+    <div id="event-description-warning" class="warning"></div>
+
+    <div class="event-form-label"><label for="event-summary">Event Summary: </label></div>
+    <div class="input-area" id="event-summary-area"><input class="event-form-text-input long" type="text"
+        id="event-summary" name="event-summary"></div>
+    <div id="event-summary-warning" class="warning"></div>
+
+    <div class="event-form-label"><label for="event-priority">Event Priority: </label></div>
+    <div class="input-area"><select id="event-priority">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select></div>
+
+    <div class="event-form-label"><label for="event-classification">Event Classification: </label></div>
+    <div class="input-area"><select id="event-classification">
+        <option value="PUBLIC">PUBLIC</option>
+        <option value="PRIVATE">PRIVATE</option>
+        <option value="CONFIDENTIAL">CONFIDENTIAL</option>
+      </select></div>
+
+    <div class="event-form-label"><label for="event-location">Event Location: </label></div>
+    <div class="input-area" id="event-location-area"><input class="event-form-text-input" type="text" id="event-location" name="event-location">
+    </div>
+    <div id="event-location-warning" class="warning"></div>
+
+    <div class="event-form-label"><label for="event-latitude">GPS Latitude: </label></div>
+    <div class="input-area"><input class="event-form-text-input" type="text" id="event-latitude" name="event-latitude">
+    </div>
+    <div class="event-form-label"><label for="event-longitude">GPS Longitude: </label></div>
+    <div class="input-area"><input class="event-form-text-input" type="text" id="event-longitude"
+        name="event-longitude"></div>
+    <div class="event-form-label"><label for="event-start-date">Start Date: </label></div>
+    <div class="input-area"><input class="event-firm-date-input" type="date" id="event-start-date"
+        name="event-start-date"></div>
+    <div class="event-form-label"><label for="event-end-date">End Date: </label></div>
+    <div class="input-area"><input class="event-firm-date-input" type="date" id="event-end-date" name="event-end-date">
+    </div>
+    <div class="event-form-label"><label for="event-start-time">Start Time</label></div>
+    <div class="input-area"><input class="event-form-time-input" type="time" id="event-start-time"
+        name="event-start-time"></div>
+    <div class="event-form-label"><label for="event-end-time">End Time</label></div>
+    <div class="input-area"><input class="event-form-time-input" type="time" id="event-end-time" name="event-end-time">
+    </div>
+    <div class="event-form-label"><label for="event-repeat-rule">Repeat For How Many Days?: </label></div>
+    <div class="input-area"><input type="number" id="event-repeat-rule" step="1"></div>
     <div id="generate-file-button" class="generate-button">Generate File</div>
   </div>
   <script src="javascript/main.js"></script>
