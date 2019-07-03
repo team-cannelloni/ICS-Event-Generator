@@ -71,7 +71,7 @@
         <td><input class="event-form-text-input" type="text" id="event-longitude" name="event-longitude"></td></tr>
     </table>
 
-    <p>If you want to use your current location, please click below.</p>
+    <p>*To use your current location, please click below.</p>
 
     <button onclick="getLocation()">Get My GPS Location!</button>
 
@@ -89,7 +89,7 @@
       }
 
       function showPosition(position) {
-        myLocation.innerHTML = "Latitude: " + position.coords.latitude +
+        myLocation.innerHTML = "--Using these coordinates--" + "<br>Latitude: " + position.coords.latitude +
             "<br>Longitude: " + position.coords.longitude;
       }
     </script>
