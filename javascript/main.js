@@ -28,7 +28,7 @@ function download() {
   function dtFormatter(input) {
     return input.replace(/[-:]/g, "");
   }
-  
+
   /* TODO: Set all form data into the data object after it has been validated */
   const eventName = document.getElementById('event-name').value;
   const eventClassification = document.getElementById('event-classification').value;
