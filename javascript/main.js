@@ -25,12 +25,61 @@ function download() {
   *  If they are not filled out, notify the user on the html page.
   */
 
-  /* TODO: Set all form data into the data object after it has been validated */
+  /** Validates any text input to make sure that the field is filled out and was not
+   * left blank.  Strips any illegal characters.  Displays an error if the input was not
+   * correctly filled out.
+   * @param text the text to validate
+   * @param id the id of the HTML element
+   * @return true if ok, false if not ok.
+   */
+  function validateRequiredTextInput(text, id) {
+    text = text.trim();
+    if (text === '') {
+      showWarning('* Required Field', `${id}-area`, `${id}-warning`);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function validateRequiredDates(start, startId, end, endId) {
+
+  }
+
+  function validateRequiredTimes(start, startId, end, endId) {
+
+  }
+
+  /** Shows a warning for a field that was not properly filled out
+   * @param warningText the warning text to display
+   * @param elementId the HTML element id
+   */
+  function showWarning(warningText, elementId, warningId) {
+    element = document.getElementById(elementId);
+    warningElement = document.getElementById(warningId);
+    element.style.width = `${55}%`;
+    warningElement.style.width = `${15}%`;
+    warningElement.innerHTML = warningText;
+    warningElement.style.opacity = 1;
+  }
+
   const eventName = document.getElementById('event-name').value;
-  const eventClassification = document.getElementById('event-classification').value;
-  const eventSummary = document.getElementById('event-summary').value;
   const eventDescription = document.getElementById('event-description').value;
+  const eventSummary = document.getElementById('event-summary').value;
   const eventLocation = document.getElementById('event-location').value;
+
+  if (validateRequiredTextInput(eventName, 'event-name') && 
+  validateRequiredTextInput(eventDescription, 'event-description') &&
+  validateRequiredTextInput(eventSummary, 'event-summary') &&
+  validateRequiredTextInput(eventLocation, 'event-location') && 
+  validateRequiredDates(eventStartDate, 'event-start-date', eventEndDate, 'event-end-date') &&
+  validateRequiredTimes(eventStartTime, 'event-start-time', eventEndTime, 'event-end-time')
+  ) {
+    console.log('all good');
+  } else {
+    return false;
+  }
+  const eventClassification = document.getElementById('event-classification').value;
   const eventLatitude = document.getElementById('event-latitude').value;
   const eventLongitude = document.getElementById('event-longitude').value;
   const eventStartTime = document.getElementById('event-start-time').value;
@@ -39,6 +88,7 @@ function download() {
   const eventEndDate = document.getElementById('event-end-date').value;
   const eventRRule= document.getElementById('event-repeat-rule').value;
   const eventPriority= document.getElementById('event-priority').value;
+
 
   const data = {
     begin: 'VCALENDAR',
