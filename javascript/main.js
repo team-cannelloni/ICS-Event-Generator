@@ -81,8 +81,8 @@ function download() {
   data.priority = eventPriority;
   data.class = eventClassification;
   data.rrule = 'FREQ=DAILY;COUNT=' + eventRRule;
-  data.dtstart = dtFormatter(eventStartDate);
-  data.dtend = dtFormatter(eventEndTime);
+  data.dtstart = dtFormatter(eventStartDate) + 'T' + dtFormatter(eventStartTime) + '00';
+  data.dtend = dtFormatter(eventEndDate) + 'T' + dtFormatter(eventEndTime) + '00';
 
 
   // Generate download of hello.txt file with some content
@@ -99,8 +99,6 @@ function download() {
   `TZOFFSETFROM:${data.tzoffsetfrom}`,
   `TZOFFSETTO:${data.tzoffsetto}`,
   `TZNAME:${data.tzname}`,
-  `DTSTART:${data.dtstart}`,
-  `DTEND:${data.dtend}`,
   `END:${data.endtype}`,
   `END:${data.endtz}`,
   `BEGIN:${data.beginevent}`,
@@ -109,8 +107,10 @@ function download() {
   `CLASS:${data.class}`,
   `RRULE:${data.rrule}`,
   `UID:${data.uid}`,
-  'DTSTART;TZID=Pacific/Honolulu:20190621T120000',
-  'DTEND;TZID=Pacific/Honolulu:20190621T120000',
+  `DTSTART:${data.dtstart}`,
+  `DTEND:${data.dtend}`,
+  //'DTSTART;TZID=Pacific/Honolulu:20190621T120000',
+  //'DTEND;TZID=Pacific/Honolulu:20190621T120000',
   `SUMMARY:${data.summary}`,
   `GEO:${data.geo}`,
   `DESCRIPTION:${data.description}`,
