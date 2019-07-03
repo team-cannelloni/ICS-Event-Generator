@@ -93,6 +93,7 @@ function download() {
   `TZOFFSETTO:${data.tzoffsetto}`,
   `TZNAME:${data.tzname}`,
   `DTSTART:${data.dtstart}`,
+  `DTEND:${data.dtend}`,
   `END:${data.endtype}`,
   `END:${data.endtz}`,
   `BEGIN:${data.beginevent}`,
