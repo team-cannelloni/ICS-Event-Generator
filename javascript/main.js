@@ -42,15 +42,40 @@ function download() {
     }
   }
 
-  function validateRequiredDates(start, startId, end, endId) {
-    console.log(start + ' ' + end);
-    return false;
+  /** Validates the user input dates and times 
+   * @param data object containing the data to evaluate
+   * @return the validated data and any errors
+  */
+  function validateDateTimes(data) {
+
+    // Object containing final results
+    const results = {
+      start: {
+        timestamp: null,
+        valid: true
+      },
+      end: {
+        timestamp: null,
+        valid: true
+      }
+    }
+
+    // Check to make certain the dates are valid
+    Object.keys(data).forEach(key => {
+      date = new Date(data[key].date);
+      if (!date.getTime()) {
+        data[key].valid = false;
+        showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
+      }
+    });
+
+    console.log(data.start.time);
   }
 
-  function validateRequiredTimes(start, startId, end, endId) {
-
-  }
-
+  /** Validates the input data
+   * @param data the data object
+   * @return object containing true of no error, false if error
+   */
   function validate(data) {
     return {
       xWrCalname: validateRequiredTextInput(data.xWrCalname, 'event-name'),
@@ -73,18 +98,30 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
-  const eventStartTime = document.getElementById('event-start-time').value;
-  const eventEndTime = document.getElementById('event-end-time').value;
-  const eventStartDate = document.getElementById('event-start-date').value;
-  const eventEndDate = document.getElementById('event-end-date').value;
+  const dates = {
+    start: {
+      date: document.getElementById('event-start-date').value,
+      time: document.getElementById('event-start-time').value,
+      dateId: 'event-start-date',
+      timeId: 'event-start-time'
+    },
+    end: {
+      date: document.getElementById('event-end-date').value,
+      time: document.getElementById('event-end-time').value,
+      dateId: 'event-end-date',
+      timeId: 'event-end-time'
+    }
+  }
+
+  const dateDate = validateDateTimes(dates);
+
   const eventLatitude = document.getElementById('event-latitude').value;
   const eventLongitude = document.getElementById('event-longitude').value;
-
 
   const data = {
     begin: 'VCALENDAR',
     version: '2.0',
-    prodid: '-//ical.marudot.com//iCal Event Maker',
+    prodid: '-//ICS 414//Team-cannelloni',
     xWrCalname: document.getElementById('event-name').value,
     calscale: 'GREGORIAN',
     begintz: 'VTIMEZONE',
@@ -113,10 +150,11 @@ function download() {
 
 
   const errors = validate(data);
-
-  const valid = Object.keys(errors).forEach(key => {
+  let valid = true;
+  Object.keys(errors).forEach(key => {
     if (!errors[key]) {
-      return false;
+      console.log('error');
+      valid = false;
     }
   });
 

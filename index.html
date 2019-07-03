@@ -52,7 +52,8 @@
       </select></div>
 
     <div class="event-form-label"><label for="event-location">Event Location: </label></div>
-    <div class="input-area" id="event-location-area"><input class="event-form-text-input" type="text" id="event-location" name="event-location">
+    <div class="input-area" id="event-location-area"><input class="event-form-text-input long" type="text"
+        id="event-location" name="event-location">
     </div>
     <div id="event-location-warning" class="warning"></div>
 
@@ -62,15 +63,22 @@
     <div class="event-form-label"><label for="event-longitude">GPS Longitude: </label></div>
     <div class="input-area"><input class="event-form-text-input" type="text" id="event-longitude"
         name="event-longitude"></div>
+
     <div class="event-form-label"><label for="event-start-date">Start Date: </label></div>
-    <div class="input-area"><input class="event-firm-date-input" type="date" id="event-start-date"
-        name="event-start-date"></div>
+    <div id="event-start-date-area" class="input-area"><input class="event-firm-date-input" type="date"
+        id="event-start-date" name="event-start-date"></div>
+    <div id="event-start-date-warning" class="warning"></div>
+
     <div class="event-form-label"><label for="event-end-date">End Date: </label></div>
-    <div class="input-area"><input class="event-firm-date-input" type="date" id="event-end-date" name="event-end-date">
+    <div id="event-end-date-area" class="input-area"><input class="event-firm-date-input" type="date"
+        id="event-end-date" name="event-end-date">
     </div>
+    <div id="event-end-date-warning" class="warning"></div>
+
     <div class="event-form-label"><label for="event-start-time">Start Time</label></div>
     <div class="input-area"><input class="event-form-time-input" type="time" id="event-start-time"
         name="event-start-time"></div>
+
     <div class="event-form-label"><label for="event-end-time">End Time</label></div>
     <div class="input-area"><input class="event-form-time-input" type="time" id="event-end-time" name="event-end-time">
     </div>
