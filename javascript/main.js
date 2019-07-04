@@ -10,7 +10,7 @@ function copyDates() {
   document.getElementById('event-end-date').value = start;
 }
 
-/** 
+/**
  * Generates the ICS file
  * @param filename the name of the file to download
  * @param text the text to write into the file.
@@ -34,12 +34,6 @@ function download() {
   *  If they are not filled out, notify the user on the html page.
   */
 
-  function dtFormatter(input) {
-    return input.replace(/[-:]/g, "");
-  }
-
-  /* TODO: Set all form data into the data object after it has been validated */
-
   /** Validates any text input to make sure that the field is filled out and was not
    * left blank.  Strips any illegal characters.  Displays an error if the input was not
    * correctly filled out.
@@ -57,10 +51,10 @@ function download() {
     }
   }
 
-  /** Validates the user input dates and times 
+  /** Validates the user input dates and times
    * @param data object containing the data to evaluate
    * @return the validated data and any errors
-  */
+   */
   function validateDateTimes(data) {
 
     // Object containing final results
@@ -78,11 +72,11 @@ function download() {
     // Check to make certain the dates are valid
     Object.keys(data).forEach(key => {
       date = new Date(data[key].date);
-      if (!date.getTime()) {
-        data[key].valid = false;
-        showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
-      }
-    });
+    if (!date.getTime()) {
+      data[key].valid = false;
+      showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
+    }
+  });
 
     console.log(data.start.time);
   }
@@ -134,8 +128,6 @@ function download() {
   const data = {
     begin: 'VCALENDAR',
     version: '2.0',
-    prodid: 'Team Cannelloni',
-    xWrCalname: 'Test Event',
     prodid: '-//ICS 414//Team-cannelloni',
     xWrCalname: document.getElementById('event-name').value,
     calscale: 'GREGORIAN',
@@ -163,24 +155,15 @@ function download() {
     location: document.getElementById('event-location').value
   };
 
-  data.xWrCalname = eventName;
-  data.summary = eventSummary;
-  data.description = eventDescription;
-  data.location = eventLocation;
-  data.priority = eventPriority;
-  data.class = eventClassification;
-  data.rrule = 'FREQ=DAILY;COUNT=' + eventRRule;
-  data.dtstart = dtFormatter(eventStartDate) + 'T' + dtFormatter(eventStartTime) + '00';
-  data.dtend = dtFormatter(eventEndDate) + 'T' + dtFormatter(eventEndTime) + '00';
 
   const errors = validate(data);
   let valid = true;
   Object.keys(errors).forEach(key => {
     if (!errors[key]) {
-      console.log('error');
-      valid = false;
-    }
-  });
+    console.log('error');
+    valid = false;
+  }
+});
 
   if (!valid) {
     return;
@@ -188,32 +171,33 @@ function download() {
 
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN:${data.begin}`,
-  `VERSION:${data.version}`,
-  `PRODID:${data.prodid}`,
-  `X-WR-CALNAME:${data.xWrCalname}`,
-  `CALSCALE:${data.calscale}`,
-  `BEGIN:${data.begintz}`,
-  `TZID:${data.tzid}`,
-  `TZURL:${data.tzurl}`,
-  `X-LIC-LOCATION:${data.xLicLocation}`,
+    `VERSION:${data.version}`,
+    `PRODID:${data.prodid}`,
+    `X-WR-CALNAME:${data.xWrCalname}`,
+    `CALSCALE:${data.calscale}`,
+    `BEGIN:${data.begintz}`,
+    `TZID:${data.tzid}`,
+    `TZURL:${data.tzurl}`,
+    `X-LIC-LOCATION:${data.xLicLocation}`,
     `BEGIN:STANDARD`,
-  `TZOFFSETFROM:${data.tzoffsetfrom}`,
-  `TZOFFSETTO:${data.tzoffsetto}`,
-  `TZNAME:${data.tzname}`,
-  `END:${data.endtype}`,
-  `END:${data.endtz}`,
-  `BEGIN:${data.beginevent}`,
-  `DTSTAMP:${data.dtstamp}`,
-  `PRIORITY:${data.priority}`,
-  `CLASS:${data.class}`,
-  `RRULE:${data.rrule}`,
-  `UID:${data.uid}`,
-  `DTSTART:${data.dtstart}`,
-  `DTEND:${data.dtend}`,
-  `SUMMARY:${data.summary}`,
-  `GEO:${data.geo}`,
-  `DESCRIPTION:${data.description}`,
-  `LOCATION:${data.location}`,
+    `TZOFFSETFROM:${data.tzoffsetfrom}`,
+    `TZOFFSETTO:${data.tzoffsetto}`,
+    `TZNAME:${data.tzname}`,
+    `DTSTART:${data.dtstart}`,
+    `END:${data.endtype}`,
+    `END:${data.endtz}`,
+    `BEGIN:${data.beginevent}`,
+    `DTSTAMP:${data.dtstamp}`,
+    `PRIORITY:${data.priority}`,
+    `CLASS:${data.class}`,
+    `RRULE:${data.rrule}`,
+    `UID:${data.uid}`,
+    'DTSTART;TZID=Pacific/Honolulu:20190621T120000',
+    'DTEND;TZID=Pacific/Honolulu:20190621T120000',
+    `SUMMARY:${data.summary}`,
+    `GEO:${data.geo}`,
+    `DESCRIPTION:${data.description}`,
+    `LOCATION:${data.location}`,
     'END:VEVENT',
     'END:VCALENDAR'];
 
