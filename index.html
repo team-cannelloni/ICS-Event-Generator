@@ -12,26 +12,28 @@
     <h1>Event Creator</h1>
   </div>
 
-  <!-- The container holds the form for the event creator.  Each row of the table is a label and 
-       an input field -->
+  <!-- Name -->
   <div id="ics-form-container" class="ics-form-container">
     <div class="event-form-label"><label for="event-name">Event Name: </label></div>
-    <div class="input-area" id="event-name-area"><input class="event-form-text-input long" type="text" id="event-name"
-        name="event-name"></div>
+    <div class="input-area long" id="event-name-area"><input placeholder="Event Name..." class="event-form-text-input full" type="text"
+        id="event-name" name="event-name"></div>
     <div id="event-name-warning" class="warning"></div>
 
+    <!-- Description -->
     <div class="event-form-label"><label for="event-description">Event Description: </label></div>
-    <div class="input-area" id="event-description-area"><input class="event-form-text-input long" type="text"
+    <div class="input-area long" id="event-description-area"><input placeholder="Event Description..." class="event-form-text-input full" type="text"
         id="event-description" name="event-description"></div>
     <div id="event-description-warning" class="warning"></div>
 
+    <!-- Summary -->
     <div class="event-form-label"><label for="event-summary">Event Summary: </label></div>
-    <div class="input-area" id="event-summary-area"><input class="event-form-text-input long" type="text"
+    <div class="input-area long" id="event-summary-area"><input placeholder="Event Summary..." class="event-form-text-input full" type="text"
         id="event-summary" name="event-summary"></div>
     <div id="event-summary-warning" class="warning"></div>
 
+    <!-- Priority -->
     <div class="event-form-label"><label for="event-priority">Event Priority: </label></div>
-    <div class="input-area"><select id="event-priority">
+    <div class="input-area short"><select id="event-priority" class="mini">
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -44,46 +46,78 @@
         <option value="9">9</option>
       </select></div>
 
-    <div class="event-form-label"><label for="event-classification">Event Classification: </label></div>
-    <div class="input-area"><select id="event-classification">
-        <option value="PUBLIC">PUBLIC</option>
-        <option value="PRIVATE">PRIVATE</option>
-        <option value="CONFIDENTIAL">CONFIDENTIAL</option>
-      </select></div>
-
-    <div class="event-form-label"><label for="event-location">Event Location: </label></div>
-    <div class="input-area" id="event-location-area"><input class="event-form-text-input long" type="text"
-        id="event-location" name="event-location">
+    <!-- Classification -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-classification">Event Classification: </label></div>
+      <div class="input-area short"><select id="event-classification" class="half">
+          <option value="PUBLIC">PUBLIC</option>
+          <option value="PRIVATE">PRIVATE</option>
+          <option value="CONFIDENTIAL">CONFIDENTIAL</option>
+        </select></div>
     </div>
-    <div id="event-location-warning" class="warning"></div>
 
-    <div class="event-form-label"><label for="event-latitude">GPS Latitude: </label></div>
-    <div class="input-area"><input class="event-form-text-input" type="text" id="event-latitude" name="event-latitude">
+    <!-- Location -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-location">Event Location: </label></div>
+      <div class="input-area long" id="event-location-area"><input placeholder="Event Location..." class="event-form-text-input full" type="text"
+          id="event-location" name="event-location">
+      </div>
+      <div id="event-location-warning" class="warning"></div>
     </div>
-    <div class="event-form-label"><label for="event-longitude">GPS Longitude: </label></div>
-    <div class="input-area"><input class="event-form-text-input" type="text" id="event-longitude"
-        name="event-longitude"></div>
 
-    <div class="event-form-label"><label for="event-start-date">Start Date: </label></div>
-    <div id="event-start-date-area" class="input-area"><input class="event-firm-date-input" type="date"
-        id="event-start-date" name="event-start-date"></div>
-    <div id="event-start-date-warning" class="warning"></div>
-
-    <div class="event-form-label"><label for="event-end-date">End Date: </label></div>
-    <div id="event-end-date-area" class="input-area"><input class="event-firm-date-input" type="date"
-        id="event-end-date" name="event-end-date">
+    <!-- Latitude -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-latitude">GPS Latitude: </label></div>
+      <div class="input-area short"><input placeholder="Event Latitude..." class="event-form-text-input half" type="text" id="event-latitude"
+          name="event-latitude">
+      </div>
     </div>
-    <div id="event-end-date-warning" class="warning"></div>
 
-    <div class="event-form-label"><label for="event-start-time">Start Time</label></div>
-    <div class="input-area"><input class="event-form-time-input" type="time" id="event-start-time"
-        name="event-start-time"></div>
-
-    <div class="event-form-label"><label for="event-end-time">End Time</label></div>
-    <div class="input-area"><input class="event-form-time-input" type="time" id="event-end-time" name="event-end-time">
+    <!-- Longitude -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-longitude">GPS Longitude: </label></div>
+      <div class="input-area short"><input placeholder="Event Longitude" class="event-form-text-input half" type="text" id="event-longitude"
+          name="event-longitude"></div>
     </div>
-    <div class="event-form-label"><label for="event-repeat-rule">Repeat For How Many Days?: </label></div>
-    <div class="input-area"><input type="number" id="event-repeat-rule" step="1"></div>
+
+
+    <!-- Start Date -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-start-date">Start Date: </label></div>
+      <div id="event-start-date-area" class="input-area extra-short"><input class="event-form-date-input half" type="date"
+          id="event-start-date" name="event-start-date"></div>
+      <div id="event-start-date-warning" class="warning"></div>
+    </div>
+
+    <!-- End Date -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-end-date">End Date: </label></div>
+      <div id="event-end-date-area" class="input-area extra-short"><input class="event-form-date-input half" type="date"
+          id="event-end-date" name="event-end-date"></div>
+      <div id="copy-date" class="event-form-button">Same As Start Date</div>
+      <div id="event-end-date-warning" class="warning"></div>
+    </div>
+
+    <!-- Start Time -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-start-time">Start Time</label></div>
+      <div class="input-area extra-short"><input class="event-form-time-input" type="time" id="event-start-time"
+          name="event-start-time"></div>
+    </div>
+
+    <!-- End Time -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-end-time">End Time</label></div>
+      <div class="input-area extra-short"><input class="event-form-time-input" type="time" id="event-end-time"
+          name="event-end-time">
+      </div>
+    </div>
+
+    <!-- Repeat -->
+    <div class="row-container">
+      <div class="event-form-label"><label for="event-repeat-rule">Repeat For How Many Days?: </label></div>
+      <div class="input-area extra-short"><input placeholder="0" type="number" class="half" id="event-repeat-rule" step="1"></div>
+    </div>
     <div id="generate-file-button" class="generate-button">Generate File</div>
   </div>
   <script src="javascript/main.js"></script>

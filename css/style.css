@@ -6,18 +6,31 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+:root {
+    --button-color-inactive: rgba(41, 42, 120, 0.7);
+    --button-color-active: rgba(41, 42, 120, 1);
+}
+
 #nav {
     width: 100vw;
     height: 10vh;
+    text-align: center;
     position: relative;
 }
 
+#nav h1 {
+    font-variant: small-caps;
+}
 /* Styles for the Event Generator Form */
+.row-container {
+    width: 100%;
+}
+
 #ics-form-container {
     position: relative;
     width: 80%;
-    left: calc(10% - 10px);
-    padding: 10px;
+    left: calc(10% - 30px);
+    padding: 30px;
     background-color: rgba(15, 15, 27, 0.8);
     color: white;
     font-size: 14px;
@@ -33,31 +46,63 @@ body {
 select {
     padding: 4px;
     margin: 2px 0 2px 0;
+    width: 99%;
 }
 
 #ics-form-container .input-area {
-    width: 70%;
     display: inline-block;
     transition: width 0.2s linear;
 }
 
-.long {
+.full {
     width: 100%;
+}
+
+.half {
+    width: 50%;
+}
+.mini {
+    width: 15%;
+}
+#ics-form-container .long {
+    width: 55%;
+}
+
+#ics-form-container .short {
+    width: 30%;
+}
+
+#ics-form-container .extra-short {
+    width: 15%;
 }
 
 .warning {
     color: red;
-    width: 0;
+    width: 15%;
     opacity: 0;
     display: inline-block;
     transition: width 0.2s linear, opacity 0.2s linear;
     margin-left: 2%;
 }
 
+.event-form-button {
+    width: 15%;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+    background-color: var(--button-color-inactive);
+    transition: background-color 0.3s ease-in;
+    cursor: pointer;
+}
+.event-form-button:hover {
+    background-color: var(--button-color-active);
+}
 
 /* Style for the generate file button */
 .generate-button {
-    background-color: rgba(41, 42, 120, 0.6);
+    background-color: var(--button-color-inactive);
     color: white;
     text-align: center;
     width: 120px;
@@ -65,8 +110,9 @@ select {
     padding: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease-in;
+    margin: 10px 0 0 0;
 }
 
 .generate-button:hover {
-    background-color: rgba(41, 42, 120, 1);
+    background-color: var(--button-color-active);
 }

@@ -1,6 +1,15 @@
 // Listen for the click of the file generation button in index.html, then run download().
 document.getElementById('generate-file-button').addEventListener('click', download);
 
+// Listen for the copy Start Date button click
+document.getElementById('copy-date').addEventListener('click', copyDates);
+
+/** Copies the start date to the end date in the form */
+function copyDates() {
+  const start = document.getElementById('event-start-date').value;
+  document.getElementById('event-end-date').value = start;
+}
+
 /** 
  * Generates the ICS file
  * @param filename the name of the file to download
@@ -92,8 +101,6 @@ function download() {
   function showWarning(warningText, elementId, warningId) {
     element = document.getElementById(elementId);
     warningElement = document.getElementById(warningId);
-    element.style.width = `${55}%`;
-    warningElement.style.width = `${15}%`;
     warningElement.innerHTML = warningText;
     warningElement.style.opacity = 1;
   }
