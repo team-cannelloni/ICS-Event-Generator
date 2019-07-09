@@ -105,8 +105,9 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
-  function dtFormatter(input) {
-    return input.replace(/[-:]/g, "");
+  function dtFormatter(input1, input2) {
+    const fDate= input1 + 'T' + input2 + '00';
+    return fDate.replace(/[-:]/g, "");
   }
 
   const dates = {
@@ -143,10 +144,10 @@ function download() {
     tzoffsetfrom: '-1000',
     tzoffsetto: '-1000',
     tzname: 'HST',
-    dtstart: dtFormatter(document.getElementById('event-start-date').value) + 'T' +
-        dtFormatter(document.getElementById('event-start-time').value) + '00',
-    dtend: dtFormatter(document.getElementById('event-end-date').value) + 'T' +
-        dtFormatter(document.getElementById('event-end-time').value) + '00',
+    dtstart: dtFormatter(document.getElementById('event-start-date').value,
+        document.getElementById('event-start-time').value),
+    dtend: dtFormatter(document.getElementById('event-end-date').value,
+        document.getElementById('event-end-time').value),
     rrule: `FREQ=DAILY;COUNT=${document.getElementById('event-repeat-rule').value}`,
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
