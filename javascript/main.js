@@ -105,6 +105,10 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
+  function dtFormatter(input) {
+    return input.replace(/[-:]/g, "");
+  }
+
   const dates = {
     start: {
       date: document.getElementById('event-start-date').value,
@@ -155,6 +159,10 @@ function download() {
     location: document.getElementById('event-location').value
   };
 
+  data.dtstart = dtFormatter(document.getElementById('event-start-date').value) + 'T' +
+      dtFormatter(document.getElementById('event-start-time').value) + '00';
+  data.dtend = dtFormatter(document.getElementById('event-end-date').value) + 'T' +
+      dtFormatter(document.getElementById('event-end-time').value) + '00';
 
   const errors = validate(data);
   let valid = true;
@@ -183,7 +191,6 @@ function download() {
     `TZOFFSETFROM:${data.tzoffsetfrom}`,
     `TZOFFSETTO:${data.tzoffsetto}`,
     `TZNAME:${data.tzname}`,
-    `DTSTART:${data.dtstart}`,
     `END:${data.endtype}`,
     `END:${data.endtz}`,
     `BEGIN:${data.beginevent}`,
@@ -192,8 +199,8 @@ function download() {
     `CLASS:${data.class}`,
     `RRULE:${data.rrule}`,
     `UID:${data.uid}`,
-    'DTSTART;TZID=Pacific/Honolulu:20190621T120000',
-    'DTEND;TZID=Pacific/Honolulu:20190621T120000',
+    `DTSTART:${data.dtstart}`,
+    `DTEND:${data.dtend}`,
     `SUMMARY:${data.summary}`,
     `GEO:${data.geo}`,
     `DESCRIPTION:${data.description}`,
