@@ -143,8 +143,10 @@ function download() {
     tzoffsetfrom: '-1000',
     tzoffsetto: '-1000',
     tzname: 'HST',
-    dtstart: '19700101T000000',
-    dtend: '19700101T010000',
+    dtstart: dtFormatter(document.getElementById('event-start-date').value) + 'T' +
+        dtFormatter(document.getElementById('event-start-time').value) + '00',
+    dtend: dtFormatter(document.getElementById('event-end-date').value) + 'T' +
+        dtFormatter(document.getElementById('event-end-time').value) + '00',
     rrule: `FREQ=DAILY;COUNT=${document.getElementById('event-repeat-rule').value}`,
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
@@ -158,11 +160,6 @@ function download() {
     description: document.getElementById('event-description').value,
     location: document.getElementById('event-location').value
   };
-
-  data.dtstart = dtFormatter(document.getElementById('event-start-date').value) + 'T' +
-      dtFormatter(document.getElementById('event-start-time').value) + '00';
-  data.dtend = dtFormatter(document.getElementById('event-end-date').value) + 'T' +
-      dtFormatter(document.getElementById('event-end-time').value) + '00';
 
   const errors = validate(data);
   let valid = true;
