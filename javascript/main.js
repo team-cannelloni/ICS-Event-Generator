@@ -17,15 +17,15 @@ function generateFile(filename, text) {
 }
 var myLocation = document.getElementById("myGPS");
 
-function getLocation() {
+function findLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(displayPosition);
   } else {
-    myLocation.innerHTML = "Geolocation is not supported by this browser.";
+    myLocation.innerHTML = "I'm sorry but your browser does not support this function.  Please input manually";
   }
 }
 
-function showPosition(position) {
+function displayPosition(position) {
   document.getElementById('event-latitude').value = position.coords.latitude;
   document.getElementById('event-longitude').value = position.coords.longitude;
   myLocation.innerHTML = "--Using these coordinates--" + "<br>Latitude: " + position.coords.latitude +
@@ -88,7 +88,8 @@ function download() {
     priority: '0',
     class: 'PUBLIC',
     summary: 'Test Event',
-    geo: '21.29693;-157.81711',
+    geo: geoFormatter(document.getElementById('event-latitude').value,
+        document.getElementById('event-longitude').value),
     description: 'This is a test of the event creator',
     location: 'UH Manoa'
   };
