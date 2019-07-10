@@ -15,7 +15,26 @@ function generateFile(filename, text) {
   element.click();
   document.body.removeChild(element);
 }
+var myLocation = document.getElementById("myGPS");
 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    myLocation.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  document.getElementById('event-latitude').value = position.coords.latitude;
+  document.getElementById('event-longitude').value = position.coords.longitude;
+  myLocation.innerHTML = "--Using these coordinates--" + "<br>Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude;
+}
+
+function geoFormatter(input1, input2) {
+  return input1 + ';' + input2;
+}
 /**
  * Sets the data for the download.  Called by the click event listener tied to the generate button.
  */

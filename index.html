@@ -77,22 +77,6 @@
 
     <p id="myGPS"></p>
 
-    <script>
-      var myLocation = document.getElementById("myGPS");
-
-      function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          myLocation.innerHTML = "Geolocation is not supported by this browser.";
-        }
-      }
-
-      function showPosition(position) {
-        myLocation.innerHTML = "--Using these coordinates--" + "<br>Latitude: " + position.coords.latitude +
-            "<br>Longitude: " + position.coords.longitude;
-      }
-    </script>
     <div id="generate-file-button" class="generate-button">Generate File</div>
   </div>
   <script src="javascript/main.js"></script>
