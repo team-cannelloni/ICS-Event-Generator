@@ -22,7 +22,7 @@ function displayPosition(position) {
   document.getElementById('event-longitude').value = position.coords.longitude;
 }
 
-//Formats GPS coordinates to .ics standard
+//Formats GPS coordinates to RFC 5545 standard
 function geoFormatter(input1, input2) {
   return input1 + ';' + input2;
 }
@@ -93,15 +93,30 @@ function download() {
     }
 
     // Check to make certain the dates are valid
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach(key = > {
       date = new Date(data[key].date);
     if (!date.getTime()) {
       data[key].valid = false;
       showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
     }
-  });
+  })
+    ;
 
     console.log(data.start.time);
+  }
+
+  //Dissects date format into individual categories
+  function dateInspection(date) {
+    var seperateDate = date.value.split('-');
+  var year = parseInt(pdate[0]);
+  var month = parseInt(pdate[1]);
+  var day = parseInt(pdate[2]);
+}
+
+  //Verifies leap year
+  function leapYearCheck(year)
+  {
+    return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
   }
 
   /** Validates the input data
@@ -128,7 +143,7 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
-  //Formats date and time to .ics standard
+  //Formats date and time to RFC 5545 standard
   function dtFormatter(input1, input2) {
     const fDate= input1 + 'T' + input2 + '00';
     return fDate.replace(/[-:]/g, "");
