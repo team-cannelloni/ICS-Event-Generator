@@ -108,9 +108,9 @@ function download() {
   //Dissects date format into individual categories
   function dateInspection(date) {
     var seperateDate = date.value.split('-');
-  var year = parseInt(pdate[0]);
-  var month = parseInt(pdate[1]);
-  var day = parseInt(pdate[2]);
+  var year = parseInt(seperateDate[0]);
+  var month = parseInt(seperateDate[1]);
+  var day = parseInt(seperateDate[2]);
 }
 
   //Verifies leap year
