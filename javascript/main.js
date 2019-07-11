@@ -4,6 +4,29 @@ document.getElementById('generate-file-button').addEventListener('click', downlo
 // Listen for the copy Start Date button click
 document.getElementById('copy-date').addEventListener('click', copyDates);
 
+//Listen for Get My GPS Location button click
+document.getElementById('myGPS').addEventListener('click', findLocation);
+
+//Determines global position through browser
+function findLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(displayPosition);
+  } else {
+    myLocation.innerHTML = "I'm sorry but your browser does not support this function.  Please input manually";
+  }
+}
+
+//Displays and inputs current latitude and longitude
+function displayPosition(position) {
+  document.getElementById('event-latitude').value = position.coords.latitude;
+  document.getElementById('event-longitude').value = position.coords.longitude;
+}
+
+//Formats GPS coordinates to .ics standard
+function geoFormatter(input1, input2) {
+  return input1 + ';' + input2;
+}
+
 /** Copies the start date to the end date in the form */
 function copyDates() {
   const start = document.getElementById('event-start-date').value;
@@ -105,6 +128,7 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
+  //Formats date and time to .ics standard
   function dtFormatter(input1, input2) {
     const fDate= input1 + 'T' + input2 + '00';
     return fDate.replace(/[-:]/g, "");
@@ -126,9 +150,6 @@ function download() {
   }
 
   const dateDate = validateDateTimes(dates);
-
-  const eventLatitude = document.getElementById('event-latitude').value;
-  const eventLongitude = document.getElementById('event-longitude').value;
 
   const data = {
     begin: 'VCALENDAR',
@@ -157,7 +178,8 @@ function download() {
     priority: document.getElementById('event-priority').value,
     class: document.getElementById('event-classification').value,
     summary: document.getElementById('event-summary').value,
-    geo: '21.29693;-157.81711',
+    geo: geoFormatter(document.getElementById('event-latitude').value,
+        document.getElementById('event-longitude').value),
     description: document.getElementById('event-description').value,
     location: document.getElementById('event-location').value
   };
