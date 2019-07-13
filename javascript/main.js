@@ -22,7 +22,7 @@ function displayPosition(position) {
   document.getElementById('event-longitude').value = position.coords.longitude;
 }
 
-//Formats GPS coordinates to .ics standard
+//Formats GPS coordinates to RFC 5545 standard
 function geoFormatter(input1, input2) {
   return input1 + ';' + input2;
 }
@@ -126,7 +126,7 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
-  //Formats date and time to .ics standard
+  //Formats date and time to RFC 5545 standard
   function dtFormatter(input1, input2) {
     const fDate= input1 + 'T' + input2 + '00';
     return fDate.replace(/[-:]/g, "");
