@@ -54,7 +54,7 @@ function generateFile(filename, text) {
 function download() {
 
  const x = new Date();
- console.log(x.getTime());
+ console.log(x.getDay());
   /** Validates any text input to make sure that the field is filled out and was not
    * left blank.  Strips any illegal characters.  Displays an error if the input was not
    * correctly filled out.
