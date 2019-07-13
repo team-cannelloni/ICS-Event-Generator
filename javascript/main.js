@@ -53,10 +53,8 @@ function generateFile(filename, text) {
  */
 function download() {
 
-  /* TODO: Validate form and check to make sure that all fields are properly filled out.
-  *  If they are not filled out, notify the user on the html page.
-  */
-
+ const x = new Date();
+ console.log(x.getTime());
   /** Validates any text input to make sure that the field is filled out and was not
    * left blank.  Strips any illegal characters.  Displays an error if the input was not
    * correctly filled out.
@@ -174,7 +172,7 @@ function download() {
     endtz: 'VTIMEZONE',
     beginevent: 'VEVENT',
     dtstamp: '20190621T035133Z',
-    uid: '20190621T035133Z - 2089128844@marudot.com',
+    uid: '20190621T035133Z-2089128844@marudot.com',
     priority: document.getElementById('event-priority').value,
     class: document.getElementById('event-classification').value,
     summary: document.getElementById('event-summary').value,
