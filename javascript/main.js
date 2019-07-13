@@ -53,8 +53,6 @@ function generateFile(filename, text) {
  */
 function download() {
 
- const x = new Date();
- console.log(x.getDay());
   /** Validates any text input to make sure that the field is filled out and was not
    * left blank.  Strips any illegal characters.  Displays an error if the input was not
    * correctly filled out.
@@ -132,6 +130,12 @@ function download() {
     return fDate.replace(/[-:]/g, "");
   }
 
+  function getDtStamp() {
+    const x = new Date();
+    let string = x.toISOString();
+    return string.replace(/[-:.]/g, '');
+  }
+
   const dates = {
     start: {
       date: document.getElementById('event-start-date').value,
@@ -171,8 +175,8 @@ function download() {
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
     beginevent: 'VEVENT',
-    dtstamp: '20190621T035133Z',
-    uid: '20190621T035133Z-2089128844@marudot.com',
+    dtstamp: getDtStamp(),
+    uid: `${getDtStamp()}-2089128844@cannelloni`,
     priority: document.getElementById('event-priority').value,
     class: document.getElementById('event-classification').value,
     summary: document.getElementById('event-summary').value,
