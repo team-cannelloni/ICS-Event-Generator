@@ -29,6 +29,9 @@ function showCount() {
   } else if (id === 'custom') {
     customElement.style.display = 'block';
     element.style.display = 'none';
+  } else {
+    customElement.style.display = 'none';
+    element.style.display = 'none';
   }
 }
 
