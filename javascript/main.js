@@ -23,14 +23,13 @@ function showCount() {
   const element = document.getElementById('event-repeat-count-container');
   const customElement = document.getElementById('event-repeat-custom-container');
   const id = document.getElementById('event-repeat-rule').value;
-  if (id === 'DAILY' || id === 'MONTHLY' || id === 'WEEKLY') {
+  if (id === 'DAILY' || id === 'MONTHLY' || id === 'WEEKLY' || id === 'YEARLY') {
     customElement.style.display = 'none;'
     element.style.display = 'block';
   } else if (id === 'custom') {
     customElement.style.display = 'block';
     element.style.display = 'none';
   }
- 
 }
 
 //Displays and inputs current latitude and longitude
