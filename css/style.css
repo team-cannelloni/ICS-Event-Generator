@@ -116,3 +116,7 @@ select {
 .generate-button:hover {
     background-color: var(--button-color-active);
 }
+
+#event-repeat-count-container {
+    display: none;
+}

@@ -16,6 +16,20 @@ function findLocation() {
   }
 }
 
+/**
+ * Shows the count option when there is a change made to the repeat rule input
+ */
+function showCount() {
+  const element = document.getElementById('event-repeat-count-container');
+  const id = document.getElementById('event-repeat-rule').value;
+  if (id === 'DAILY' || id === 'MONTHLY' || id === 'WEEKLY') {
+    element.style.display = 'block';
+  } else if (id === 'custom') {
+    element.style.display = 'none';
+  }
+ 
+}
+
 //Displays and inputs current latitude and longitude
 function displayPosition(position) {
   document.getElementById('event-latitude').value = position.coords.latitude;
@@ -194,7 +208,10 @@ function download() {
   }
 
   const dateTime = validateDateTimes(dates);
-  console.log(dateTime);
+  const recurringRule = {
+    frequency: document.getElementById('event-repeat-rule').value,
+    count: document.getElementById('event-repeat-count').value
+  }
 
   const data = {
     begin: 'VCALENDAR',
@@ -214,7 +231,7 @@ function download() {
         document.getElementById('event-start-time').value),
     dtend: dtFormatter(document.getElementById('event-end-date').value,
         document.getElementById('event-end-time').value),
-    rrule: `FREQ=DAILY;COUNT=${document.getElementById('event-repeat-rule').value}`,
+    rrule: `FREQ=${recurringRule.frequency};COUNT=${recurringRule.count}`,
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
     beginevent: 'VEVENT',
