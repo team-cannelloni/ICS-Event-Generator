@@ -36,6 +36,7 @@ function showCount() {
 function displayPosition(position) {
   document.getElementById('event-latitude').value = position.coords.latitude;
   document.getElementById('event-longitude').value = position.coords.longitude;
+  document.getElementById('event-location').value = position.coords.latitude + ", " + position.coords.longitude;
 }
 
 //Formats GPS coordinates to RFC 5545 standard
