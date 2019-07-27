@@ -118,13 +118,13 @@
     <!-- Repeat -->
     <div class="row-container">
       <div class="event-form-label"><label for="event-repeat-rule">Recurring Event?: </label></div>
-      <div class="input-area extra-short">
+      <div class="input-area extra-half">
         <select id="event-repeat-rule" onchange="showCount()">
-          <option value="">No Repeat</option>
+          <option value="YEARLY">No Repeat</option>
           <option value="DAILY">Daily</option>
           <option value="WEEKLY">Weekly</option>
           <option value="MONTHLY">Monthly</option>
-          <option value="custom">Custom</option>
+          <option value="custom">Custom Days</option>
         </select>
       </div>
 
@@ -132,7 +132,28 @@
       <div class="row-container" id="event-repeat-count-container">
         <div class="event-form-label"><label for="event-repeat-count">How many Times?:</label></div>
         <div class="input-area extra-short">
-          <input type="number" id="event-repeat-count" value="0">
+          <input type="number" id="event-repeat-count" value="1">
+        </div>
+      </div>
+
+      <!-- Repeat -->
+      <div class="row-container" id="event-repeat-custom-container">
+        <div class="event-form-label"><label for="event-repeat-custom">Which Days:</label></div>
+        <div class="input-area short">
+          <input type="checkbox" value="SU" id="sunday-checkbox" class="day-checkbox">
+          <label for="sunday-checkbox">Sunday</label><br/>
+          <input type="checkbox" value="MO" id="monday-checkbox" class="day-checkbox">
+          <label for="monday-checkbox">Monday</label><br/>
+          <input type="checkbox" value="TU" id="tuesday-checkbox" class="day-checkbox">
+          <label for="tuesday-checkbox">Tuesday</label><br/>
+          <input type="checkbox" value="WE" id="wednesday-checkbox" class="day-checkbox">
+          <label for="wednesday-checkbox">Wednesday</label><br/>
+          <input type="checkbox" value="TH" id="thursday-checkbox" class="day-checkbox">
+          <label for="thursday-checkbox">Thursday</label><br/>
+          <input type="checkbox" value="FR" id="friday-checkbox" class="day-checkbox">
+          <label for="friday-checkbox">Friday</label><br/>
+          <input type="checkbox" value="SA" id="saturday-checkbox" class="day-checkbox">
+          <label for="saturday-checkbox">Saturday</label><br/>
         </div>
       </div>
 

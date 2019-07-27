@@ -40,6 +40,7 @@ body {
 #ics-form-container .event-form-label {
     width: 23%;
     display: inline-block;
+    vertical-align: top;
 }
 
 #ics-form-container input,
@@ -119,4 +120,14 @@ select {
 
 #event-repeat-count-container {
     display: none;
+}
+
+#event-repeat-custom-container {
+    display: none;
+}
+
+#event-repeat-custom-container .day-checkbox {
+    width: auto;
+    padding: 5px;
+    display: inline-block;
 }

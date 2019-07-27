@@ -21,10 +21,13 @@ function findLocation() {
  */
 function showCount() {
   const element = document.getElementById('event-repeat-count-container');
+  const customElement = document.getElementById('event-repeat-custom-container');
   const id = document.getElementById('event-repeat-rule').value;
   if (id === 'DAILY' || id === 'MONTHLY' || id === 'WEEKLY') {
+    customElement.style.display = 'none;'
     element.style.display = 'block';
   } else if (id === 'custom') {
+    customElement.style.display = 'block';
     element.style.display = 'none';
   }
  
@@ -83,6 +86,58 @@ function download() {
       hideWarning(`${id}-area`, `${id}-warning`);
       return true;
     }
+  }
+
+
+  /** This function generates a recurring rule based in the inputs from
+   * the user.
+   */
+  function generateRecurringRule() {
+    let rule = '';
+    // The user has selected custom days for the recurrence
+    if (document.getElementById('event-repeat-rule').value === 'custom') {
+      let dayString = '';
+
+      if (document.getElementById('sunday-checkbox').checked) {
+        dayString += `${document.getElementById('sunday-checkbox').value},`;
+      }
+
+      if (document.getElementById('monday-checkbox').checked) {
+        dayString += `${document.getElementById('monday-checkbox').value},`;
+      }
+
+      if (document.getElementById('tuesday-checkbox').checked) {
+        dayString += `${document.getElementById('tuesday-checkbox').value},`;
+      }
+
+      if (document.getElementById('wednesday-checkbox').checked) {
+        dayString += `${document.getElementById('wednesday-checkbox').value},`;
+      }
+
+      if (document.getElementById('thursday-checkbox').checked) {
+        dayString += `${document.getElementById('thursday-checkbox').value},`;
+      }
+
+      if (document.getElementById('friday-checkbox').checked) {
+        dayString += `${document.getElementById('friday-checkbox').value},`;
+      }
+
+      if (document.getElementById('saturday-checkbox').checked) {
+        dayString += `${document.getElementById('saturday-checkbox').value},`;
+      }
+
+      if (dayString[dayString.length - 1] === ',') {
+        dayString = dayString.substr(0, dayString.length - 1);
+      }
+
+      rule = `FREQ=WEEKLY;BYDAY=${dayString}`;
+    } else {  // Use the normal rule
+      rule = `FREQ=${document.getElementById('event-repeat-rule').value};COUNT=${document.getElementById('event-repeat-count').value}`;
+    }
+
+
+
+    return rule;
   }
 
   /** Validates the user input dates and times
@@ -208,10 +263,7 @@ function download() {
   }
 
   const dateTime = validateDateTimes(dates);
-  const recurringRule = {
-    frequency: document.getElementById('event-repeat-rule').value,
-    count: document.getElementById('event-repeat-count').value
-  }
+  const recurringRule = generateRecurringRule();
 
   const data = {
     begin: 'VCALENDAR',
@@ -231,7 +283,7 @@ function download() {
         document.getElementById('event-start-time').value),
     dtend: dtFormatter(document.getElementById('event-end-date').value,
         document.getElementById('event-end-time').value),
-    rrule: `FREQ=${recurringRule.frequency};COUNT=${recurringRule.count}`,
+    rrule: recurringRule,
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
     beginevent: 'VEVENT',
