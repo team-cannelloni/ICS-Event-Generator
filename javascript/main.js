@@ -66,6 +66,7 @@ function download() {
       showWarning('* Required Field', `${id}-area`, `${id}-warning`);
       return false;
     } else {
+      hideWarning(`${id}-area`, `${id}-warning`);
       return true;
     }
   }
@@ -93,6 +94,8 @@ function download() {
       results[key].valid = false;
       showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
       return results;
+    } else {
+      hideWarning(`${data[key].dateId}-area`, `${data[key].dateId}-warning`);
     }
   });
     
@@ -106,10 +109,14 @@ function download() {
       if (data.start.time === '') {
         results.start.valid = false;
         showWarning('*Invalid Time', `${data.start.timeId}-area`, `${data.start.timeId}-warning`);
+      } else {
+        hideWarning(`${data.start.timeId}-area`, `${data.start.timeId}-warning`);
       }
       if (data.end.time === '') {
         results.end.valid = false;
         showWarning('*Invalid Time', `${data.end.timeId}-area`, `${data.end.timeId}-warning`);
+      } else {
+        hideWarning(`${data.end.timeId}-area`, `${data.end.timeId}-warning`);
       }
       return results;
     }
@@ -121,6 +128,9 @@ function download() {
       showWarning('*Ends before start', `${data.end.dateId}-area`, `${data.end.dateId}-warning`);
       showWarning('*Ends before start', `${data.end.timeId}-area`, `${data.end.timeId}-warning`);
       results.end.valid = false;
+    } else {
+      hideWarning(`${data.end.dateId}-area`, `${data.end.dateId}-warning`);
+      hideWarning(`${data.end.timeId}-area`, `${data.end.timeId}-warning`);
     }
     return results;
   }
@@ -147,6 +157,13 @@ function download() {
     warningElement = document.getElementById(warningId);
     warningElement.innerHTML = warningText;
     warningElement.style.opacity = 1;
+  }
+
+  function hideWarning(elementId, warningId) {
+    element = document.getElementById(elementId);
+    warningElement = document.getElementById(warningId);
+    warningElement.innerHTML = '';
+    warningElement.style.opacity = 0;
   }
 
   //Formats date and time to RFC 5545 standard
