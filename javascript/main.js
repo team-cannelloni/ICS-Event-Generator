@@ -79,11 +79,9 @@ function download() {
     // Object containing final results
     const results = {
       start: {
-        timestamp: null,
         valid: true
       },
       end: {
-        timestamp: null,
         valid: true
       }
     }
@@ -92,12 +90,39 @@ function download() {
     Object.keys(data).forEach(key => {
       date = new Date(data[key].date);
     if (!date.getTime()) {
-      data[key].valid = false;
+      results[key].valid = false;
       showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
+      return results;
     }
   });
+    
+    let startDate = new Date(data.start.date);
+    let endDate = new Date(data.end.date);
 
-    console.log(data.start.time);
+    let startTime = data.start.time.split(':');
+    let endTime = data.end.time.split(':');
+
+    if (data.start.time === '' || data.end.time === '') {
+      if (data.start.time === '') {
+        results.start.valid = false;
+        showWarning('*Invalid Time', `${data.start.timeId}-area`, `${data.start.timeId}-warning`);
+      }
+      if (data.end.time === '') {
+        results.end.valid = false;
+        showWarning('*Invalid Time', `${data.end.timeId}-area`, `${data.end.timeId}-warning`);
+      }
+      return results;
+    }
+ 
+    startDate.setTime(startDate.getTime() + (parseInt(startTime[0], 10) + 60 * 60 * 1000) + (parseInt(startTime[1], 10) + 60 * 1000));
+    endDate.setTime(endDate.getTime() + (parseInt(endTime[0], 10) + 60 * 60 * 1000) + (parseInt(endTime[1], 10) + 60 * 1000));
+    
+    if (startDate.getTime() > endDate.getTime()) {
+      showWarning('*Ends before start', `${data.end.dateId}-area`, `${data.end.dateId}-warning`);
+      showWarning('*Ends before start', `${data.end.timeId}-area`, `${data.end.timeId}-warning`);
+      results.end.valid = false;
+    }
+    return results;
   }
 
   /** Validates the input data
@@ -151,7 +176,8 @@ function download() {
     }
   }
 
-  const dateDate = validateDateTimes(dates);
+  const dateTime = validateDateTimes(dates);
+  console.log(dateTime);
 
   const data = {
     begin: 'VCALENDAR',
@@ -195,7 +221,7 @@ function download() {
   }
 });
 
-  if (!valid) {
+  if (!(valid && dateTime.start.valid && dateTime.end.valid)) {
     return;
   }
 
