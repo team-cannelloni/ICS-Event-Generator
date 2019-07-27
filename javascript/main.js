@@ -73,7 +73,7 @@ function download() {
 
   /** Validates the user input dates and times
    * @param data object containing the data to evaluate
-   * @return the validated data and any errors
+   * @return results containing valid or not
    */
   function validateDateTimes(data) {
 
@@ -276,7 +276,7 @@ function download() {
   let text = '';
   dataArray.forEach(line => text += `${line}\r\n`);
 
-  const filename = 'test.ics';
+  const filename = 'event.ics';
 
   generateFile(filename, text);
 }
