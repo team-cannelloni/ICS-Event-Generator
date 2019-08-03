@@ -133,7 +133,7 @@ function download() {
         dayString = dayString.substr(0, dayString.length - 1);
       }
 
-      rule = `FREQ=WEEKLY;BYDAY=${dayString}`;
+      rule = `FREQ=WEEKLY;COUNT=${document.getElementById('event-repeat-count').value};BYDAY=${dayString}`;
     } else {  // Use the normal rule
       rule = `FREQ=${document.getElementById('event-repeat-rule').value};COUNT=${document.getElementById('event-repeat-count').value}`;
     }
