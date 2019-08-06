@@ -138,8 +138,6 @@ function download() {
       rule = `FREQ=${document.getElementById('event-repeat-rule').value};COUNT=${document.getElementById('event-repeat-count').value}`;
     }
 
-
-
     return rule;
   }
 
@@ -231,6 +229,10 @@ function download() {
     warningElement.style.opacity = 1;
   }
 
+  /** Hides any a warning
+   * @param elementId -> The id of the parent element
+   * @param warningId -> The id of the warning element
+   */
   function hideWarning(elementId, warningId) {
     element = document.getElementById(elementId);
     warningElement = document.getElementById(warningId);
@@ -238,9 +240,12 @@ function download() {
     warningElement.style.opacity = 0;
   }
 
-  //Formats date and time to RFC 5545 standard
+  /** Formats date and time to RFC 5545 standard
+   * @param input1
+   * @param input2 
+   */
   function dtFormatter(input1, input2) {
-    const fDate= input1 + 'T' + input2 + '00';
+    const fDate = input1 + 'T' + input2 + '00';
     return fDate.replace(/[-:]/g, "");
   }
 
