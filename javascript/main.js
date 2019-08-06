@@ -7,7 +7,7 @@ document.getElementById('copy-date').addEventListener('click', copyDates);
 //Listen for Get My GPS Location button click
 document.getElementById('myGPS').addEventListener('click', findLocation);
 
-//Determines global position through browser
+/** Determines global position through browser */
 function findLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(displayPosition);
@@ -35,14 +35,20 @@ function showCount() {
   }
 }
 
-//Displays and inputs current latitude and longitude
+/** Displays and inputs current latitude and longitude
+ * @param position -> Object containing the coordinates
+*/
 function displayPosition(position) {
   document.getElementById('event-latitude').value = position.coords.latitude;
   document.getElementById('event-longitude').value = position.coords.longitude;
   document.getElementById('event-location').value = position.coords.latitude + ", " + position.coords.longitude;
 }
 
-//Formats GPS coordinates to RFC 5545 standard
+/** Formats GPS coordinates to RFC 5545 standard 
+ * @param input1 -> The latitude 
+ * @param input2 -> The longitude
+ * @return formatted coordinates string
+*/
 function geoFormatter(input1, input2) {
   return input1 + ';' + input2;
 }
@@ -94,6 +100,7 @@ function download() {
 
   /** This function generates a recurring rule based in the inputs from
    * the user.
+   * @return the completed recurring rule
    */
   function generateRecurringRule() {
     let rule = '';
@@ -160,15 +167,15 @@ function download() {
     // Check to make certain the dates are valid
     Object.keys(data).forEach(key => {
       date = new Date(data[key].date);
-    if (!date.getTime()) {
-      results[key].valid = false;
-      showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
-      return results;
-    } else {
-      hideWarning(`${data[key].dateId}-area`, `${data[key].dateId}-warning`);
-    }
-  });
-    
+      if (!date.getTime()) {
+        results[key].valid = false;
+        showWarning('*Invalid Date', `${data[key].dateId}-area`, `${data[key].dateId}-warning`);
+        return results;
+      } else {
+        hideWarning(`${data[key].dateId}-area`, `${data[key].dateId}-warning`);
+      }
+    });
+
     let startDate = new Date(data.start.date);
     let endDate = new Date(data.end.date);
 
@@ -190,10 +197,10 @@ function download() {
       }
       return results;
     }
- 
+
     startDate.setTime(startDate.getTime() + (parseInt(startTime[0], 10) + 60 * 60 * 1000) + (parseInt(startTime[1], 10) + 60 * 1000));
     endDate.setTime(endDate.getTime() + (parseInt(endTime[0], 10) + 60 * 60 * 1000) + (parseInt(endTime[1], 10) + 60 * 1000));
-    
+
     if (startDate.getTime() > endDate.getTime()) {
       showWarning('*Ends before start', `${data.end.dateId}-area`, `${data.end.dateId}-warning`);
       showWarning('*Ends before start', `${data.end.timeId}-area`, `${data.end.timeId}-warning`);
@@ -241,20 +248,25 @@ function download() {
   }
 
   /** Formats date and time to RFC 5545 standard
-   * @param input1
-   * @param input2 
+   * @param input1 -> The date value
+   * @param input2 -> The time value
+   * @return the correctly formatted date
    */
   function dtFormatter(input1, input2) {
     const fDate = input1 + 'T' + input2 + '00';
     return fDate.replace(/[-:]/g, "");
   }
 
+  /** gets an ISO datestamp 
+   * @return ISO datestamp
+   */
   function getDtStamp() {
     const x = new Date();
     let string = x.toISOString();
     return string.replace(/[-:.]/g, '');
   }
 
+  // Object holding dates, times, and id values
   const dates = {
     start: {
       date: document.getElementById('event-start-date').value,
@@ -270,9 +282,13 @@ function download() {
     }
   }
 
+  // Validated dateTime
   const dateTime = validateDateTimes(dates);
+
+  // Validated recurring rule
   const recurringRule = generateRecurringRule();
 
+  // Prevalidation data collected from HTML
   const data = {
     begin: 'VCALENDAR',
     version: '2.0',
@@ -288,9 +304,9 @@ function download() {
     tzoffsetto: '-1000',
     tzname: 'HST',
     dtstart: dtFormatter(document.getElementById('event-start-date').value,
-        document.getElementById('event-start-time').value),
+      document.getElementById('event-start-time').value),
     dtend: dtFormatter(document.getElementById('event-end-date').value,
-        document.getElementById('event-end-time').value),
+      document.getElementById('event-end-time').value),
     rrule: recurringRule,
     endtype: 'STANDARD',
     endtz: 'VTIMEZONE',
@@ -301,59 +317,66 @@ function download() {
     class: document.getElementById('event-classification').value,
     summary: document.getElementById('event-summary').value,
     geo: geoFormatter(document.getElementById('event-latitude').value,
-        document.getElementById('event-longitude').value),
+      document.getElementById('event-longitude').value),
     description: document.getElementById('event-description').value,
     location: document.getElementById('event-location').value
   };
 
+  /* Calls the validate function and will cycle through all data validation
+  * functions.  If there are errors found, the valid variable will be false.
+  * if everything checks out, the variable will be true. */
   const errors = validate(data);
   let valid = true;
   Object.keys(errors).forEach(key => {
     if (!errors[key]) {
-    console.log('error');
-    valid = false;
-  }
-});
+      console.log('error');
+      valid = false;
+    }
+  });
 
+  /* Check to ensure the Times/Dates are valid.  If not, return (dont make a file) */ 
   if (!(valid && dateTime.start.valid && dateTime.end.valid)) {
     return;
   }
 
   // Generate download of hello.txt file with some content
   const dataArray = [`BEGIN:${data.begin}`,
-    `VERSION:${data.version}`,
-    `PRODID:${data.prodid}`,
-    `X-WR-CALNAME:${data.xWrCalname}`,
-    `CALSCALE:${data.calscale}`,
-    `BEGIN:${data.begintz}`,
-    `TZID:${data.tzid}`,
-    `TZURL:${data.tzurl}`,
-    `X-LIC-LOCATION:${data.xLicLocation}`,
+  `VERSION:${data.version}`,
+  `PRODID:${data.prodid}`,
+  `X-WR-CALNAME:${data.xWrCalname}`,
+  `CALSCALE:${data.calscale}`,
+  `BEGIN:${data.begintz}`,
+  `TZID:${data.tzid}`,
+  `TZURL:${data.tzurl}`,
+  `X-LIC-LOCATION:${data.xLicLocation}`,
     `BEGIN:STANDARD`,
-    `TZOFFSETFROM:${data.tzoffsetfrom}`,
-    `TZOFFSETTO:${data.tzoffsetto}`,
-    `TZNAME:${data.tzname}`,
-    `END:${data.endtype}`,
-    `END:${data.endtz}`,
-    `BEGIN:${data.beginevent}`,
-    `DTSTAMP:${data.dtstamp}`,
-    `PRIORITY:${data.priority}`,
-    `CLASS:${data.class}`,
-    `RRULE:${data.rrule}`,
-    `UID:${data.uid}`,
-    `DTSTART:${data.dtstart}`,
-    `DTEND:${data.dtend}`,
-    `SUMMARY:${data.summary}`,
-    `GEO:${data.geo}`,
-    `DESCRIPTION:${data.description}`,
-    `LOCATION:${data.location}`,
+  `TZOFFSETFROM:${data.tzoffsetfrom}`,
+  `TZOFFSETTO:${data.tzoffsetto}`,
+  `TZNAME:${data.tzname}`,
+  `END:${data.endtype}`,
+  `END:${data.endtz}`,
+  `BEGIN:${data.beginevent}`,
+  `DTSTAMP:${data.dtstamp}`,
+  `PRIORITY:${data.priority}`,
+  `CLASS:${data.class}`,
+  `RRULE:${data.rrule}`,
+  `UID:${data.uid}`,
+  `DTSTART:${data.dtstart}`,
+  `DTEND:${data.dtend}`,
+  `SUMMARY:${data.summary}`,
+  `GEO:${data.geo}`,
+  `DESCRIPTION:${data.description}`,
+  `LOCATION:${data.location}`,
     'END:VEVENT',
     'END:VCALENDAR'];
 
+  // Generate the text of the file.
   let text = '';
   dataArray.forEach(line => text += `${line}\r\n`);
 
+  // Default filename.
   const filename = 'event.ics';
 
+  // Create the file.
   generateFile(filename, text);
 }
